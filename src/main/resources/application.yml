@@ -8,3 +8,9 @@ spring:
                     facebook:
                         client-id: hgjjh
                         client-secret: tg6tgfty
+
+# logging:
+#   level:
+#     org:
+#         springframework:
+#                     security: TRACE
