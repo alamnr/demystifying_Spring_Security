@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: devoxbe
+    security:
+        oauth2:
+            client:
+                registration:
+                    facebook:
+                        client-id: hgjjh
+                        client-secret: tg6tgfty
