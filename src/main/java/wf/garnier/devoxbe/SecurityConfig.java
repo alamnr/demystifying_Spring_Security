@@ -33,7 +33,9 @@ public class SecurityConfig  {
             http.getSharedObject(AuthenticationManagerBuilder.class)
             .authenticationEventPublisher(publisher);
         }
-        var authManager =new ProviderManager( new RobotAuthenticationProvider(List.of("beep-boop","boop-beep")));
+        //var configurer = new RobotLoginConfigurer();
+        var authProvider = new RobotAuthenticationProvider(List.of("beep-boop","boop-beep"));
+        var authManager =new ProviderManager( authProvider);
         authManager.setAuthenticationEventPublisher(publisher);
         
         return http
@@ -47,6 +49,10 @@ public class SecurityConfig  {
                 .httpBasic(withDefaults())
                 .oauth2Login(withDefaults())
                 .addFilterBefore(new RobotFilter(authManager), UsernamePasswordAuthenticationFilter.class)
+                /* .apply(configurer)  // RobotLoginConfigurer
+                    .password("beep-boop")
+                    .password("beep-beep")
+                    .and() // HttpSecurity */
                 .authenticationProvider(new DanielAuthenticationProvider())
                 .build();
     }
